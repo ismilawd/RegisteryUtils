@@ -49,6 +49,8 @@
             this.دربارهتوسعهدهندهToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.دربارهنرمافزارToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.txtLog = new MetroFramework.Controls.MetroTextBox();
+            this.txtAddress = new MetroFramework.Controls.MetroTextBox();
             this.treeViewRegistery = new System.Windows.Forms.TreeView();
             this.keysImageList = new System.Windows.Forms.ImageList(this.components);
             this.label1 = new System.Windows.Forms.Label();
@@ -61,8 +63,6 @@
             this.gridAdd = new System.Windows.Forms.ToolStripMenuItem();
             this.gridDelete = new System.Windows.Forms.ToolStripMenuItem();
             this.gridEdit = new System.Windows.Forms.ToolStripMenuItem();
-            this.txtLog = new MetroFramework.Controls.MetroTextBox();
-            this.txtAddress = new MetroFramework.Controls.MetroTextBox();
             this.mainMenuStrip.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridValues)).BeginInit();
@@ -199,6 +199,75 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(964, 556);
             this.tableLayoutPanel1.TabIndex = 1;
+            // 
+            // txtLog
+            // 
+            // 
+            // 
+            // 
+            this.txtLog.CustomButton.Image = null;
+            this.txtLog.CustomButton.Location = new System.Drawing.Point(690, 2);
+            this.txtLog.CustomButton.Name = "";
+            this.txtLog.CustomButton.Size = new System.Drawing.Size(15, 15);
+            this.txtLog.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
+            this.txtLog.CustomButton.TabIndex = 1;
+            this.txtLog.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.txtLog.CustomButton.UseSelectable = true;
+            this.txtLog.CustomButton.Visible = false;
+            this.txtLog.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtLog.Enabled = false;
+            this.txtLog.Icon = global::Presentation.Properties.Resources.search;
+            this.txtLog.Lines = new string[0];
+            this.txtLog.Location = new System.Drawing.Point(3, 533);
+            this.txtLog.MaxLength = 32767;
+            this.txtLog.Name = "txtLog";
+            this.txtLog.PasswordChar = '\0';
+            this.txtLog.ReadOnly = true;
+            this.txtLog.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.txtLog.SelectedText = "";
+            this.txtLog.SelectionLength = 0;
+            this.txtLog.SelectionStart = 0;
+            this.txtLog.ShortcutsEnabled = true;
+            this.txtLog.Size = new System.Drawing.Size(708, 20);
+            this.txtLog.TabIndex = 5;
+            this.txtLog.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtLog.UseSelectable = true;
+            this.txtLog.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
+            this.txtLog.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            // 
+            // txtAddress
+            // 
+            // 
+            // 
+            // 
+            this.txtAddress.CustomButton.Image = null;
+            this.txtAddress.CustomButton.Location = new System.Drawing.Point(690, 2);
+            this.txtAddress.CustomButton.Name = "";
+            this.txtAddress.CustomButton.Size = new System.Drawing.Size(15, 15);
+            this.txtAddress.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
+            this.txtAddress.CustomButton.TabIndex = 1;
+            this.txtAddress.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.txtAddress.CustomButton.UseSelectable = true;
+            this.txtAddress.CustomButton.Visible = false;
+            this.txtAddress.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtAddress.Icon = global::Presentation.Properties.Resources.search;
+            this.txtAddress.Lines = new string[0];
+            this.txtAddress.Location = new System.Drawing.Point(3, 3);
+            this.txtAddress.MaxLength = 32767;
+            this.txtAddress.Name = "txtAddress";
+            this.txtAddress.PasswordChar = '\0';
+            this.txtAddress.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.txtAddress.SelectedText = "";
+            this.txtAddress.SelectionLength = 0;
+            this.txtAddress.SelectionStart = 0;
+            this.txtAddress.ShortcutsEnabled = true;
+            this.txtAddress.Size = new System.Drawing.Size(708, 20);
+            this.txtAddress.TabIndex = 2;
+            this.txtAddress.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtAddress.UseSelectable = true;
+            this.txtAddress.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
+            this.txtAddress.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            this.txtAddress.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtAddress_KeyPress);
             // 
             // treeViewRegistery
             // 
@@ -337,81 +406,14 @@
             this.gridDelete.Name = "gridDelete";
             this.gridDelete.Size = new System.Drawing.Size(180, 22);
             this.gridDelete.Text = "حذف";
+            this.gridDelete.Click += new System.EventHandler(this.gridDelete_Click);
             // 
             // gridEdit
             // 
             this.gridEdit.Name = "gridEdit";
             this.gridEdit.Size = new System.Drawing.Size(180, 22);
             this.gridEdit.Text = "ویرایش";
-            // 
-            // txtLog
-            // 
-            // 
-            // 
-            // 
-            this.txtLog.CustomButton.Image = null;
-            this.txtLog.CustomButton.Location = new System.Drawing.Point(690, 2);
-            this.txtLog.CustomButton.Name = "";
-            this.txtLog.CustomButton.Size = new System.Drawing.Size(15, 15);
-            this.txtLog.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
-            this.txtLog.CustomButton.TabIndex = 1;
-            this.txtLog.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
-            this.txtLog.CustomButton.UseSelectable = true;
-            this.txtLog.CustomButton.Visible = false;
-            this.txtLog.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtLog.Enabled = false;
-            this.txtLog.Icon = global::Presentation.Properties.Resources.search;
-            this.txtLog.Lines = new string[0];
-            this.txtLog.Location = new System.Drawing.Point(3, 533);
-            this.txtLog.MaxLength = 32767;
-            this.txtLog.Name = "txtLog";
-            this.txtLog.PasswordChar = '\0';
-            this.txtLog.ReadOnly = true;
-            this.txtLog.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.txtLog.SelectedText = "";
-            this.txtLog.SelectionLength = 0;
-            this.txtLog.SelectionStart = 0;
-            this.txtLog.ShortcutsEnabled = true;
-            this.txtLog.Size = new System.Drawing.Size(708, 20);
-            this.txtLog.TabIndex = 5;
-            this.txtLog.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtLog.UseSelectable = true;
-            this.txtLog.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
-            this.txtLog.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
-            // 
-            // txtAddress
-            // 
-            // 
-            // 
-            // 
-            this.txtAddress.CustomButton.Image = null;
-            this.txtAddress.CustomButton.Location = new System.Drawing.Point(690, 2);
-            this.txtAddress.CustomButton.Name = "";
-            this.txtAddress.CustomButton.Size = new System.Drawing.Size(15, 15);
-            this.txtAddress.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
-            this.txtAddress.CustomButton.TabIndex = 1;
-            this.txtAddress.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
-            this.txtAddress.CustomButton.UseSelectable = true;
-            this.txtAddress.CustomButton.Visible = false;
-            this.txtAddress.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtAddress.Icon = global::Presentation.Properties.Resources.search;
-            this.txtAddress.Lines = new string[0];
-            this.txtAddress.Location = new System.Drawing.Point(3, 3);
-            this.txtAddress.MaxLength = 32767;
-            this.txtAddress.Name = "txtAddress";
-            this.txtAddress.PasswordChar = '\0';
-            this.txtAddress.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.txtAddress.SelectedText = "";
-            this.txtAddress.SelectionLength = 0;
-            this.txtAddress.SelectionStart = 0;
-            this.txtAddress.ShortcutsEnabled = true;
-            this.txtAddress.Size = new System.Drawing.Size(708, 20);
-            this.txtAddress.TabIndex = 2;
-            this.txtAddress.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtAddress.UseSelectable = true;
-            this.txtAddress.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
-            this.txtAddress.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
-            this.txtAddress.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtAddress_KeyPress);
+            this.gridEdit.Click += new System.EventHandler(this.gridEdit_Click);
             // 
             // MainForm
             // 

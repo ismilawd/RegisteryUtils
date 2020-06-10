@@ -120,15 +120,32 @@ namespace RegisteryApi.Registery
             }
             return values.ToArray();
         }
+        public static RegistryValue GetKeyValue(string keyName,string valueName)
+        {
+            RegistryKey key = GetRegistryKey(keyName);
+            if (!HavePermissionsOnKey(RegistryPermissionAccess.AllAccess, keyName)) return null;
+            string[] valueNames = key.GetValueNames();
+            List<RegistryValue> values = new List<RegistryValue>();
+            foreach (string item in valueNames)
+            {
+                values.Add(new RegistryValue
+                {
+                    Name = item,
+                    Value = key.GetValue(item, null),
+                    ValueKind = key.GetValueKind(item)
+                });
+            }
+            return values.FirstOrDefault(v => v.Name == valueName);
+        }
         public static void AddValue(string keyPath,RegistryValue value)
         {
             RegistryKey key = GetRegistryKey(keyPath);
             key.SetValue(value.Name, value.Value, value.ValueKind);
         }
-        public static void EditValue(string keyPath, RegistryValue value)
+        public static void EditValue(string keyPath,string lastName, RegistryValue value)
         {
             RegistryKey key = GetRegistryKey(keyPath);
-            key.DeleteValue(value.Name, false);
+            key.DeleteValue(lastName, false);
             AddValue(keyPath, value);
         }
         public static void DeleteValue(string fullPath)

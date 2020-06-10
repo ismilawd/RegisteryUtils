@@ -58,6 +58,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dialogs\EditValue.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\EditValue.Designer.cs">
+      <DependentUpon>EditValue.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\AddValue.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -78,6 +84,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Dialogs\EditValue.resx">
+      <DependentUpon>EditValue.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\AddValue.resx">
       <DependentUpon>AddValue.cs</DependentUpon>
     </EmbeddedResource>

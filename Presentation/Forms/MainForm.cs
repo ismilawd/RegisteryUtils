@@ -209,8 +209,8 @@ namespace Presentation.Forms
         private void gridAdd_Click(object sender, EventArgs e)
         {
             AddValue addValue = new AddValue(treeViewRegistery.SelectedNode.FullPath);
-            DialogResult result= addValue.ShowDialog();
-            if(result==DialogResult.OK)
+            DialogResult result = addValue.ShowDialog();
+            if (result == DialogResult.OK)
             {
                 BindValues(treeViewRegistery.SelectedNode);
             }
@@ -218,6 +218,37 @@ namespace Presentation.Forms
             {
                 MessageBox.Show("عملیات توسط کاربر لغو شد.", "افزودن", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+        }
+
+        private void gridDelete_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show($"آیا برای حذف {gridValues.SelectedRows[0].Cells[0].Value} اطمینان دارید؟", "حذف مقدار", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                if (!RegistryManager.GetKeyValues(treeViewRegistery.SelectedNode.FullPath).Any(item => item.Name == gridValues.SelectedRows[0].Cells[0].Value.ToString()))
+                {
+                    gridValues.Rows.Remove(gridValues.SelectedRows[0]);
+                    MessageBox.Show("مقداری با این نام یافت نشد.", "اخطار", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                RegistryManager.DeleteValue($"{treeViewRegistery.SelectedNode.FullPath}\\{gridValues.SelectedRows[0].Cells[0].Value}");
+                BindValues(treeViewRegistery.SelectedNode);
+            }
+        }
+
+        private void gridEdit_Click(object sender, EventArgs e)
+        {
+            EditValue addValue = new EditValue(treeViewRegistery.SelectedNode.FullPath, gridValues.SelectedRows[0].Cells[0].Value.ToString());
+            DialogResult result = addValue.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                BindValues(treeViewRegistery.SelectedNode);
+            }
+            else
+            {
+                MessageBox.Show("عملیات توسط کاربر لغو شد.", "ویرایش", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+
         }
     }
 }
