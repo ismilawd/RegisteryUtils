@@ -25,7 +25,7 @@ namespace Presentation.Forms
         private void CheckPermission()
         {
             Thread.Sleep(1000);
-            if (RegisteryManager.HavePermissionsOnKey(System.Security.Permissions.RegistryPermissionAccess.AllAccess, "HKEY_LOCAL_MACHINE"))
+            if (RegistryManager.HavePermissionsOnKey(System.Security.Permissions.RegistryPermissionAccess.AllAccess, "HKEY_LOCAL_MACHINE"))
             {
                 Invoke(new Action(() =>
                 {
