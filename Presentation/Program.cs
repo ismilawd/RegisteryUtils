@@ -1,4 +1,5 @@
 ﻿using Presentation.Forms;
+using RegisteryApi.Registery;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +18,9 @@ namespace Presentation
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainForm());
+            //Check Permission
+            
+            Application.Run(new PermissionChecker());
         }
     }
 }
