@@ -1,5 +1,6 @@
 ﻿using MetroFramework.Forms;
 using Microsoft.Win32;
+using Presentation.Dialogs;
 using RegisteryApi;
 using RegisteryApi.Registery;
 using System;
@@ -34,7 +35,8 @@ namespace Presentation.Forms
             {
                 Log("درحال بارگذاری داده های اولیه");
                 treeViewRegistery.BeginUpdate();
-                treeViewRegistery.Nodes.AddRange(keys.Select(key => {
+                treeViewRegistery.Nodes.AddRange(keys.Select(key =>
+                {
                     TreeNode node = new TreeNode()
                     {
                         ImageIndex = 0,
@@ -61,15 +63,21 @@ namespace Presentation.Forms
 
         private void treeViewRegistery_AfterSelect(object sender, TreeViewEventArgs e)
         {
+            if (!(e.Action == TreeViewAction.ByKeyboard || e.Action == TreeViewAction.ByMouse || e.Action == TreeViewAction.Expand)) return;
+            BindNodesOnNode(e.Node);
+        }
+        private void BindNodesOnNode(TreeNode tnode)
+        {
+            txtAddress.Text = tnode.FullPath;
             Debug.WriteLine("treeViewRegistery_AfterSelect");
-            Debug.WriteLine($"Load Data For:{e.Node.FullPath}");
-            Log($"درحال بارگذاری داده ها برای {e.Node.FullPath}");
-            if (e.Node.Nodes.Count > 0)
-                if (e.Node.Nodes[0].Text == ".")
-                    e.Node.Nodes.RemoveAt(0);
+            Debug.WriteLine($"Load Data For:{tnode.FullPath}");
+            Log($"درحال بارگذاری داده ها برای {tnode.FullPath}");
+            if (tnode.Nodes.Count > 0)
+                if (tnode.Nodes[0].Text == ".")
+                    tnode.Nodes.RemoveAt(0);
             try
             {
-                string path = e.Node.FullPath;
+                string path = tnode.FullPath;
                 RegistryKey[] keys = RegistryManager.GetRegistryKeys(path);
                 foreach (RegistryKey item in keys)
                 {
@@ -80,26 +88,38 @@ namespace Presentation.Forms
                     };
                     if (item.SubKeyCount > 0)
                         node.Nodes.Add(".");
-                    e.Node.Nodes.Add(node);
+                    tnode.Nodes.Add(node);
                     Application.DoEvents();
                 }
-                e.Node.Expand();
-                Debug.WriteLine($"Data Loaded For {e.Node.FullPath}");
+                tnode.Expand();
+                BindValues(tnode);
+                Debug.WriteLine($"Data Loaded For {tnode.FullPath}");
                 Log("داده ها بارگذاری شدند");
             }
             catch (UserHandledException ex)
             {
                 Debug.WriteLine("UserHandledException Error", ex);
                 MessageBox.Show(ex.Message, "اخطار", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                treeViewRegistery_SelectWithoutEvent(e.Node);
+                treeViewRegistery_SelectWithoutEvent(tnode);
             }
             catch (SecurityException ex)
             {
                 Debug.WriteLine("SecurityException Error", ex);
                 MessageBox.Show("شما به این کلید دسترسی ندارید.لطفا با حساب مدیر سیستم وارد شوید.", "خطای دسترسی", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                treeViewRegistery_SelectWithoutEvent(e.Node);
+                treeViewRegistery_SelectWithoutEvent(tnode);
             }
         }
+
+        private void BindValues(TreeNode tnode)
+        {
+            RegistryValue[] values = RegistryManager.GetKeyValues(tnode.FullPath);
+            gridValues.Rows.Clear();
+            foreach (RegistryValue item in values)
+            {
+                gridValues.Rows.Add(item.Name, item.ValueKind, item.Value);
+            }
+        }
+
         private void treeViewRegistery_SelectWithoutEvent(TreeNode node)
         {
 
@@ -114,13 +134,15 @@ namespace Presentation.Forms
             Debug.WriteLine("treeViewRegistery_AfterExpand");
             Debug.WriteLine(e.Node.FullPath);
             treeViewRegistery_AfterSelect(sender, e);
+            treeViewRegistery.SelectedNode = e.Node;
+
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             Debug.WriteLine("FormClosing Requested");
             DialogResult result = MessageBox.Show("آیا میخواهید از برنامه خارج شوید؟", "خروج از برنامه", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if(result==DialogResult.Yes)
+            if (result == DialogResult.Yes)
             {
                 Environment.Exit(0);
             }
@@ -132,6 +154,70 @@ namespace Presentation.Forms
         private void Log(string message)
         {
             txtLog.Text = message;
+        }
+
+        private void txtAddress_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)ConsoleKey.Enter)
+            {
+                try
+                {
+                    string path = txtAddress.Text.Trim();
+                    List<string> pathDirection = path.Split('\\').ToList();
+                    RegistryKey basekey = RegistryManager.GetBaseKeyByName(pathDirection[0]);
+                    if (basekey == null)
+                        throw new UserHandledException("آدرس وارد شده صحیح نمیباشد");
+                    RegistryKey key = RegistryManager.GetRegistryKey(basekey, string.Join("\\", pathDirection.Skip(1)));
+                    if (key == null)
+                        throw new UserHandledException("آدرس وارد شده صحیح نمیباشد");
+
+                    TreeNode[] treeNodesClone = new TreeNode[treeViewRegistery.Nodes.Count];
+                    treeViewRegistery.Nodes.CopyTo(treeNodesClone, 0);
+                    TreeNode node = treeNodesClone.Where(n => n.Text == pathDirection[0]).FirstOrDefault();
+                    treeViewRegistery.SelectedNode = node;
+                    BindNodesOnNode(treeViewRegistery.SelectedNode);
+                    foreach (string dir in pathDirection.Skip(1))
+                    {
+                        treeNodesClone = new TreeNode[treeViewRegistery.SelectedNode.Nodes.Count];
+                        treeViewRegistery.SelectedNode.Nodes.CopyTo(treeNodesClone, 0);
+                        node = treeNodesClone.Where(n => n.Text == dir).FirstOrDefault();
+
+                        treeViewRegistery.SelectedNode = node;
+                        treeViewRegistery.SelectedNode.Checked = true;
+                        BindNodesOnNode(treeViewRegistery.SelectedNode);
+                    }
+                    treeViewRegistery.SelectedNode.Collapse(true);
+                    treeViewRegistery.Focus();
+                    Log($"Found Node :{treeViewRegistery.SelectedNode.FullPath}");
+                }
+                catch (UserHandledException ex)
+                {
+                    Debug.WriteLine("UserHandledException Error", ex);
+                    MessageBox.Show(ex.Message, "اخطار", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+        }
+
+        private void gridContextMenu_Opening(object sender, CancelEventArgs e)
+        {
+            gridEdit.Enabled =
+            gridDelete.Enabled =
+            gridValues.SelectedRows.Count > 0;
+            gridAdd.Enabled = treeViewRegistery.SelectedNode != null;
+        }
+
+        private void gridAdd_Click(object sender, EventArgs e)
+        {
+            AddValue addValue = new AddValue(treeViewRegistery.SelectedNode.FullPath);
+            DialogResult result= addValue.ShowDialog();
+            if(result==DialogResult.OK)
+            {
+                BindValues(treeViewRegistery.SelectedNode);
+            }
+            else
+            {
+                MessageBox.Show("عملیات توسط کاربر لغو شد.", "افزودن", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
     }
 }

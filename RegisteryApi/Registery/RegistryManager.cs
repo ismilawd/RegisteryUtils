@@ -1,6 +1,7 @@
 ﻿using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 using System.Linq;
 using System.Security;
 using System.Security.Permissions;
@@ -79,7 +80,14 @@ namespace RegisteryApi.Registery
 
         public static RegistryKey GetRegistryKey(RegistryKey baseKey, string name)
         {
-            return baseKey.OpenSubKey(name);
+            return baseKey.OpenSubKey(name,true);
+        }
+        public static RegistryKey GetRegistryKey(string name)
+        {
+            string[] dir = name.Split('\\');
+            RegistryKey key = GetBaseKeyByName(dir[0]);
+            key = GetRegistryKey(key, string.Join("\\", dir.Skip(1)));
+            return key;
         }
         public static RegistryKey[] GetRegistryKeys(RegistryKey baseKey, string[] names)
         {
@@ -94,6 +102,41 @@ namespace RegisteryApi.Registery
         public static RegistryKey GetBaseKeyByName(string name)
         {
             return GetRootKeys().Where(key => key.Name == name).FirstOrDefault();
+        }
+        public static RegistryValue[] GetKeyValues(string keyName)
+        {
+            RegistryKey key = GetRegistryKey(keyName);
+            if (!HavePermissionsOnKey(RegistryPermissionAccess.AllAccess, keyName)) return null;
+            string[] valueNames= key.GetValueNames();
+            List<RegistryValue> values = new List<RegistryValue>();
+            foreach (string item in valueNames)
+            {
+                values.Add(new RegistryValue
+                {
+                    Name=item,
+                    Value=key.GetValue(item,null),
+                    ValueKind=key.GetValueKind(item)
+                });
+            }
+            return values.ToArray();
+        }
+        public static void AddValue(string keyPath,RegistryValue value)
+        {
+            RegistryKey key = GetRegistryKey(keyPath);
+            key.SetValue(value.Name, value.Value, value.ValueKind);
+        }
+        public static void EditValue(string keyPath, RegistryValue value)
+        {
+            RegistryKey key = GetRegistryKey(keyPath);
+            key.DeleteValue(value.Name, false);
+            AddValue(keyPath, value);
+        }
+        public static void DeleteValue(string fullPath)
+        {
+            string[] direction = fullPath.Split('\\');
+            string keyName =string.Join("\\", direction.Take(direction.Length - 1));
+            RegistryKey key = GetRegistryKey(keyName);
+            key.DeleteValue(direction.Last());
         }
     }
 }

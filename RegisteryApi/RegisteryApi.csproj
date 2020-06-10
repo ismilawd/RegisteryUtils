@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Registery\RegistryValue.cs" />
     <Compile Include="Registery\RegistryManager.cs" />
     <Compile Include="UserHandledException.cs" />
   </ItemGroup>
