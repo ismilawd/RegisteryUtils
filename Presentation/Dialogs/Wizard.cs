@@ -52,6 +52,10 @@ namespace Presentation.Dialogs
             {
                 chkFloatingSearch.Checked = RegistryManager.GetKeyValue(@"HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Search", "ImmersiveSearch") != null;
             }
+            //chkClockSeconds
+            {
+                chkClockSeconds.Checked = RegistryManager.GetKeyValue(@"HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced", "ShowSecondsInSystemClock") != null;
+            }
         }
         private void chkFastStartMenu_CheckedChanged(object sender, EventArgs e)
         {
@@ -210,6 +214,24 @@ namespace Presentation.Dialogs
             else
             {
                 RegistryManager.DeleteValue($"{parent}\\ImmersiveSearch");
+            }
+        }
+
+        private void chkClockSeconds_CheckedChanged(object sender, EventArgs e)
+        {
+            string key = @"HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced";
+            if (chkClockSeconds.Checked)
+            {
+                RegistryManager.AddValue(key, new RegistryValue
+                {
+                    Name="ShowSecondsInSystemClock",
+                    Value=1,
+                    ValueKind=RegistryValueKind.DWord
+                });
+            }
+            else
+            {
+                RegistryManager.DeleteValue($"{key}\\ShowSecondsInSystemClock");
             }
         }
     }

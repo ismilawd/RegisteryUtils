@@ -37,6 +37,7 @@
             this.chkContextMenuMoveTo = new MetroFramework.Controls.MetroCheckBox();
             this.chkShortcutArrows = new MetroFramework.Controls.MetroCheckBox();
             this.chkFloatingSearch = new MetroFramework.Controls.MetroCheckBox();
+            this.chkClockSeconds = new MetroFramework.Controls.MetroCheckBox();
             this.SuspendLayout();
             // 
             // chkFastStartMenu
@@ -135,12 +136,25 @@
             this.chkFloatingSearch.UseSelectable = true;
             this.chkFloatingSearch.CheckedChanged += new System.EventHandler(this.chkFloatingSearch_CheckedChanged);
             // 
+            // chkClockSeconds
+            // 
+            this.chkClockSeconds.AutoSize = true;
+            this.chkClockSeconds.Location = new System.Drawing.Point(646, 180);
+            this.chkClockSeconds.Name = "chkClockSeconds";
+            this.chkClockSeconds.Size = new System.Drawing.Size(142, 15);
+            this.chkClockSeconds.TabIndex = 8;
+            this.chkClockSeconds.Text = "Taskbar Clock Seconds";
+            this.chkClockSeconds.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.chkClockSeconds.UseSelectable = true;
+            this.chkClockSeconds.CheckedChanged += new System.EventHandler(this.chkClockSeconds_CheckedChanged);
+            // 
             // Wizard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.chkClockSeconds);
             this.Controls.Add(this.chkFloatingSearch);
             this.Controls.Add(this.chkShortcutArrows);
             this.Controls.Add(this.chkContextMenuMoveTo);
@@ -171,5 +185,6 @@
         private MetroFramework.Controls.MetroCheckBox chkContextMenuMoveTo;
         private MetroFramework.Controls.MetroCheckBox chkShortcutArrows;
         private MetroFramework.Controls.MetroCheckBox chkFloatingSearch;
+        private MetroFramework.Controls.MetroCheckBox chkClockSeconds;
     }
 }
