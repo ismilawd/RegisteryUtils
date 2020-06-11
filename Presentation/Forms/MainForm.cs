@@ -35,6 +35,7 @@ namespace Presentation.Forms
             {
                 Log("درحال بارگذاری داده های اولیه");
                 treeViewRegistery.BeginUpdate();
+                treeViewRegistery.Nodes.Clear();
                 treeViewRegistery.Nodes.AddRange(keys.Select(key =>
                 {
                     TreeNode node = new TreeNode()
@@ -314,6 +315,48 @@ namespace Presentation.Forms
         {
             Wizard wizard = new Wizard();
             wizard.Show();
+        }
+
+        private void treeContextMenu_Opening(object sender, CancelEventArgs e)
+        {
+            treeAdd.Enabled = treeDelete.Enabled = treeViewRegistery.SelectedNode != null;
+        }
+
+        private void treeAdd_Click(object sender, EventArgs e)
+        {
+            AddKey addKey = new AddKey(treeViewRegistery.SelectedNode.FullPath);
+            DialogResult result = addKey.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                thLoadKeys = new Thread(LoadKeys);
+                thLoadKeys.Start();
+            }
+            else
+            {
+                MessageBox.Show("عملیات توسط کاربر لغو شد.", "افزودن", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void treeDelete_Click(object sender, EventArgs e)
+        {
+            if(treeViewRegistery.SelectedNode.Parent==null)
+            {
+                MessageBox.Show("کلید روت نمیتواند حذف شود.", "اخطار", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            DialogResult result = MessageBox.Show($"آیا برای حذف {treeViewRegistery.SelectedNode.FullPath} اطمینان دارید؟", "حذف کلید", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                if (RegistryManager.GetRegistryKey(treeViewRegistery.SelectedNode.FullPath) == null)
+                {
+                    treeViewRegistery.Nodes.Remove(treeViewRegistery.SelectedNode);
+                    MessageBox.Show("کلیدی با این نام یافت نشد.", "اخطار", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                RegistryManager.DeleteKey(treeViewRegistery.SelectedNode.Parent.FullPath,treeViewRegistery.SelectedNode.Text);
+                thLoadKeys = new Thread(LoadKeys);
+                thLoadKeys.Start();
+            }
         }
     }
 }

@@ -67,6 +67,12 @@
     <Compile Include="Dialogs\About.Designer.cs">
       <DependentUpon>About.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\AddKey.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\AddKey.Designer.cs">
+      <DependentUpon>AddKey.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\AddValueNoKey.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -113,6 +119,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Dialogs\About.resx">
       <DependentUpon>About.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\AddKey.resx">
+      <DependentUpon>AddKey.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\AddValueNoKey.resx">
       <DependentUpon>AddValueNoKey.cs</DependentUpon>

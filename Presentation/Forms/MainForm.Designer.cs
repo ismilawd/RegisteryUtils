@@ -30,9 +30,9 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.mainMenuStrip = new System.Windows.Forms.MenuStrip();
             this.مدیریتToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolAdd = new System.Windows.Forms.ToolStripMenuItem();
@@ -51,6 +51,9 @@
             this.txtLog = new MetroFramework.Controls.MetroTextBox();
             this.txtAddress = new MetroFramework.Controls.MetroTextBox();
             this.treeViewRegistery = new System.Windows.Forms.TreeView();
+            this.treeContextMenu = new MetroFramework.Controls.MetroContextMenu(this.components);
+            this.treeAdd = new System.Windows.Forms.ToolStripMenuItem();
+            this.treeDelete = new System.Windows.Forms.ToolStripMenuItem();
             this.keysImageList = new System.Windows.Forms.ImageList(this.components);
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -64,6 +67,7 @@
             this.gridEdit = new System.Windows.Forms.ToolStripMenuItem();
             this.mainMenuStrip.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
+            this.treeContextMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridValues)).BeginInit();
             this.gridContextMenu.SuspendLayout();
             this.SuspendLayout();
@@ -97,19 +101,19 @@
             // toolAdd
             // 
             this.toolAdd.Name = "toolAdd";
-            this.toolAdd.Size = new System.Drawing.Size(180, 22);
+            this.toolAdd.Size = new System.Drawing.Size(148, 22);
             this.toolAdd.Text = "ایجاد";
             this.toolAdd.Click += new System.EventHandler(this.toolAdd_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(145, 6);
             // 
             // toolBackup
             // 
             this.toolBackup.Name = "toolBackup";
-            this.toolBackup.Size = new System.Drawing.Size(180, 22);
+            this.toolBackup.Size = new System.Drawing.Size(148, 22);
             this.toolBackup.Text = "پشتیبان گیری";
             this.toolBackup.Visible = false;
             this.toolBackup.Click += new System.EventHandler(this.toolBackup_Click);
@@ -117,20 +121,20 @@
             // toolRestore
             // 
             this.toolRestore.Name = "toolRestore";
-            this.toolRestore.Size = new System.Drawing.Size(180, 22);
+            this.toolRestore.Size = new System.Drawing.Size(148, 22);
             this.toolRestore.Text = "بازیابی پشتیبان";
             this.toolRestore.Visible = false;
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(145, 6);
             this.toolStripSeparator2.Visible = false;
             // 
             // toolExit
             // 
             this.toolExit.Name = "toolExit";
-            this.toolExit.Size = new System.Drawing.Size(180, 22);
+            this.toolExit.Size = new System.Drawing.Size(148, 22);
             this.toolExit.Text = "خروج";
             this.toolExit.Click += new System.EventHandler(this.toolExit_Click);
             // 
@@ -145,7 +149,7 @@
             // toolWizard
             // 
             this.toolWizard.Name = "toolWizard";
-            this.toolWizard.Size = new System.Drawing.Size(180, 22);
+            this.toolWizard.Size = new System.Drawing.Size(153, 22);
             this.toolWizard.Text = "جادوگر رجیستری";
             this.toolWizard.Click += new System.EventHandler(this.toolWizard_Click);
             // 
@@ -273,6 +277,7 @@
             // 
             // treeViewRegistery
             // 
+            this.treeViewRegistery.ContextMenuStrip = this.treeContextMenu;
             this.treeViewRegistery.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treeViewRegistery.ImageIndex = 0;
             this.treeViewRegistery.ImageList = this.keysImageList;
@@ -284,6 +289,30 @@
             this.treeViewRegistery.TabIndex = 0;
             this.treeViewRegistery.AfterExpand += new System.Windows.Forms.TreeViewEventHandler(this.treeViewRegistery_AfterExpand);
             this.treeViewRegistery.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeViewRegistery_AfterSelect);
+            // 
+            // treeContextMenu
+            // 
+            this.treeContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.treeAdd,
+            this.treeDelete});
+            this.treeContextMenu.Name = "gridContextMenu";
+            this.treeContextMenu.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.treeContextMenu.Size = new System.Drawing.Size(181, 70);
+            this.treeContextMenu.Opening += new System.ComponentModel.CancelEventHandler(this.treeContextMenu_Opening);
+            // 
+            // treeAdd
+            // 
+            this.treeAdd.Name = "treeAdd";
+            this.treeAdd.Size = new System.Drawing.Size(180, 22);
+            this.treeAdd.Text = "افزودن";
+            this.treeAdd.Click += new System.EventHandler(this.treeAdd_Click);
+            // 
+            // treeDelete
+            // 
+            this.treeDelete.Name = "treeDelete";
+            this.treeDelete.Size = new System.Drawing.Size(180, 22);
+            this.treeDelete.Text = "حذف";
+            this.treeDelete.Click += new System.EventHandler(this.treeDelete_Click);
             // 
             // keysImageList
             // 
@@ -324,28 +353,28 @@
             this.gridValues.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.gridValues.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.gridValues.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridValues.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridValues.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.gridValues.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridValues.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ColumnName,
             this.ColumnValueKind,
             this.ColumnValue});
             this.gridValues.ContextMenuStrip = this.gridContextMenu;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(136)))), ((int)(((byte)(136)))));
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.gridValues.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(136)))), ((int)(((byte)(136)))));
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.gridValues.DefaultCellStyle = dataGridViewCellStyle5;
             this.gridValues.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gridValues.EnableHeadersVisualStyles = false;
             this.gridValues.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
@@ -354,14 +383,14 @@
             this.gridValues.Name = "gridValues";
             this.gridValues.ReadOnly = true;
             this.gridValues.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridValues.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridValues.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.gridValues.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.gridValues.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.gridValues.Size = new System.Drawing.Size(708, 498);
@@ -436,6 +465,7 @@
             this.mainMenuStrip.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
+            this.treeContextMenu.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridValues)).EndInit();
             this.gridContextMenu.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -474,5 +504,8 @@
         private System.Windows.Forms.ToolStripMenuItem gridAdd;
         private System.Windows.Forms.ToolStripMenuItem gridDelete;
         private System.Windows.Forms.ToolStripMenuItem gridEdit;
+        private MetroFramework.Controls.MetroContextMenu treeContextMenu;
+        private System.Windows.Forms.ToolStripMenuItem treeAdd;
+        private System.Windows.Forms.ToolStripMenuItem treeDelete;
     }
 }
