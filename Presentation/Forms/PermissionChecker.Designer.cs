@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PermissionChecker));
             this.lblPermissionStatus = new MetroFramework.Controls.MetroLabel();
             this.SuspendLayout();
             // 
@@ -48,6 +49,7 @@
             this.ClientSize = new System.Drawing.Size(379, 159);
             this.ControlBox = false;
             this.Controls.Add(this.lblPermissionStatus);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Movable = false;
             this.Name = "PermissionChecker";
             this.Resizable = false;

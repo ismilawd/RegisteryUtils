@@ -94,8 +94,14 @@ namespace RegisteryApi.Registery
             List<RegistryKey> keys = new List<RegistryKey>();
             foreach (string item in names)
             {
-                if (HavePermissionsOnKey(RegistryPermissionAccess.AllAccess, $"{baseKey.Name}\\{item}"))
-                    keys.Add(baseKey.OpenSubKey(item));
+                try
+                {
+                    if (HavePermissionsOnKey(RegistryPermissionAccess.AllAccess, $"{baseKey.Name}\\{item}"))
+                        keys.Add(baseKey.OpenSubKey(item));
+                }
+                catch (Exception)
+                {
+                }
             }
             return keys.ToArray();
         }

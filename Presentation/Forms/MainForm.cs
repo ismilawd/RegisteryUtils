@@ -79,6 +79,8 @@ namespace Presentation.Forms
             {
                 string path = tnode.FullPath;
                 RegistryKey[] keys = RegistryManager.GetRegistryKeys(path);
+                int keysCount = keys.Length;
+                int index = 0;
                 foreach (RegistryKey item in keys)
                 {
                     string nodeName = item.Name.Split('\\').Last();
@@ -89,12 +91,13 @@ namespace Presentation.Forms
                     if (item.SubKeyCount > 0)
                         node.Nodes.Add(".");
                     tnode.Nodes.Add(node);
+                    Log($"در حال بارگذاری داده ها {++index}/{keysCount}");
                     Application.DoEvents();
                 }
                 tnode.Expand();
                 BindValues(tnode);
                 Debug.WriteLine($"Data Loaded For {tnode.FullPath}");
-                Log("داده ها بارگذاری شدند");
+                Log($"داده ها بارگذاری شدند.تعداد : {keysCount}");
             }
             catch (UserHandledException ex)
             {
@@ -116,7 +119,31 @@ namespace Presentation.Forms
             gridValues.Rows.Clear();
             foreach (RegistryValue item in values)
             {
-                gridValues.Rows.Add(item.Name, item.ValueKind, item.Value);
+                string val = "";
+                switch (item.ValueKind)
+                {
+                    case RegistryValueKind.String:
+                    case RegistryValueKind.ExpandString:
+                    case RegistryValueKind.DWord:
+                    case RegistryValueKind.QWord:
+                        {
+                            val = item.Value.ToString();
+                        }
+                        break;
+                    case RegistryValueKind.Binary:
+                        {
+                            char[] bytesList = ((byte[])item.Value).Select(c => (char)c).ToArray();
+                            string v = string.Join("", bytesList);
+                            val = v;
+                        }
+                        break;
+                    case RegistryValueKind.MultiString:
+                        {
+                            val = item.Value.ToString().Replace('\0', ';');
+                        }
+                        break;
+                }
+                gridValues.Rows.Add(item.Name, item.ValueKind,val);
             }
         }
 

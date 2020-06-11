@@ -391,27 +391,27 @@
             this.gridEdit});
             this.gridContextMenu.Name = "gridContextMenu";
             this.gridContextMenu.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.gridContextMenu.Size = new System.Drawing.Size(181, 92);
+            this.gridContextMenu.Size = new System.Drawing.Size(111, 70);
             this.gridContextMenu.Opening += new System.ComponentModel.CancelEventHandler(this.gridContextMenu_Opening);
             // 
             // gridAdd
             // 
             this.gridAdd.Name = "gridAdd";
-            this.gridAdd.Size = new System.Drawing.Size(180, 22);
+            this.gridAdd.Size = new System.Drawing.Size(110, 22);
             this.gridAdd.Text = "افزودن";
             this.gridAdd.Click += new System.EventHandler(this.gridAdd_Click);
             // 
             // gridDelete
             // 
             this.gridDelete.Name = "gridDelete";
-            this.gridDelete.Size = new System.Drawing.Size(180, 22);
+            this.gridDelete.Size = new System.Drawing.Size(110, 22);
             this.gridDelete.Text = "حذف";
             this.gridDelete.Click += new System.EventHandler(this.gridDelete_Click);
             // 
             // gridEdit
             // 
             this.gridEdit.Name = "gridEdit";
-            this.gridEdit.Size = new System.Drawing.Size(180, 22);
+            this.gridEdit.Size = new System.Drawing.Size(110, 22);
             this.gridEdit.Text = "ویرایش";
             this.gridEdit.Click += new System.EventHandler(this.gridEdit_Click);
             // 
@@ -422,6 +422,7 @@
             this.ClientSize = new System.Drawing.Size(1004, 660);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.mainMenuStrip);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.mainMenuStrip;
             this.Name = "MainForm";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
