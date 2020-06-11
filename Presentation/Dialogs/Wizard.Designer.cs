@@ -43,8 +43,10 @@
             // 
             // chkFastStartMenu
             // 
+            this.chkFastStartMenu.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.chkFastStartMenu.AutoSize = true;
-            this.chkFastStartMenu.Location = new System.Drawing.Point(683, 12);
+            this.chkFastStartMenu.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.chkFastStartMenu.Location = new System.Drawing.Point(-562, 10);
             this.chkFastStartMenu.Name = "chkFastStartMenu";
             this.chkFastStartMenu.Size = new System.Drawing.Size(105, 15);
             this.chkFastStartMenu.TabIndex = 0;
@@ -56,7 +58,8 @@
             // chkRestrictChangingDesktopWallpaper
             // 
             this.chkRestrictChangingDesktopWallpaper.AutoSize = true;
-            this.chkRestrictChangingDesktopWallpaper.Location = new System.Drawing.Point(569, 33);
+            this.chkRestrictChangingDesktopWallpaper.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.chkRestrictChangingDesktopWallpaper.Location = new System.Drawing.Point(12, 31);
             this.chkRestrictChangingDesktopWallpaper.Name = "chkRestrictChangingDesktopWallpaper";
             this.chkRestrictChangingDesktopWallpaper.Size = new System.Drawing.Size(219, 15);
             this.chkRestrictChangingDesktopWallpaper.TabIndex = 1;
@@ -68,7 +71,8 @@
             // chkHideDrives
             // 
             this.chkHideDrives.AutoSize = true;
-            this.chkHideDrives.Location = new System.Drawing.Point(705, 54);
+            this.chkHideDrives.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.chkHideDrives.Location = new System.Drawing.Point(12, 52);
             this.chkHideDrives.Name = "chkHideDrives";
             this.chkHideDrives.Size = new System.Drawing.Size(83, 15);
             this.chkHideDrives.TabIndex = 2;
@@ -80,7 +84,8 @@
             // chkClearRunHistory
             // 
             this.chkClearRunHistory.AutoSize = true;
-            this.chkClearRunHistory.Location = new System.Drawing.Point(673, 75);
+            this.chkClearRunHistory.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.chkClearRunHistory.Location = new System.Drawing.Point(12, 73);
             this.chkClearRunHistory.Name = "chkClearRunHistory";
             this.chkClearRunHistory.Size = new System.Drawing.Size(115, 15);
             this.chkClearRunHistory.TabIndex = 3;
@@ -92,7 +97,8 @@
             // chkContextMenuCopyTo
             // 
             this.chkContextMenuCopyTo.AutoSize = true;
-            this.chkContextMenuCopyTo.Location = new System.Drawing.Point(605, 96);
+            this.chkContextMenuCopyTo.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.chkContextMenuCopyTo.Location = new System.Drawing.Point(12, 94);
             this.chkContextMenuCopyTo.Name = "chkContextMenuCopyTo";
             this.chkContextMenuCopyTo.Size = new System.Drawing.Size(183, 15);
             this.chkContextMenuCopyTo.TabIndex = 4;
@@ -104,7 +110,8 @@
             // chkContextMenuMoveTo
             // 
             this.chkContextMenuMoveTo.AutoSize = true;
-            this.chkContextMenuMoveTo.Location = new System.Drawing.Point(603, 117);
+            this.chkContextMenuMoveTo.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.chkContextMenuMoveTo.Location = new System.Drawing.Point(12, 115);
             this.chkContextMenuMoveTo.Name = "chkContextMenuMoveTo";
             this.chkContextMenuMoveTo.Size = new System.Drawing.Size(185, 15);
             this.chkContextMenuMoveTo.TabIndex = 5;
@@ -116,7 +123,8 @@
             // chkShortcutArrows
             // 
             this.chkShortcutArrows.AutoSize = true;
-            this.chkShortcutArrows.Location = new System.Drawing.Point(634, 138);
+            this.chkShortcutArrows.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.chkShortcutArrows.Location = new System.Drawing.Point(12, 136);
             this.chkShortcutArrows.Name = "chkShortcutArrows";
             this.chkShortcutArrows.Size = new System.Drawing.Size(154, 15);
             this.chkShortcutArrows.TabIndex = 6;
@@ -128,7 +136,8 @@
             // chkFloatingSearch
             // 
             this.chkFloatingSearch.AutoSize = true;
-            this.chkFloatingSearch.Location = new System.Drawing.Point(684, 159);
+            this.chkFloatingSearch.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.chkFloatingSearch.Location = new System.Drawing.Point(12, 157);
             this.chkFloatingSearch.Name = "chkFloatingSearch";
             this.chkFloatingSearch.Size = new System.Drawing.Size(104, 15);
             this.chkFloatingSearch.TabIndex = 7;
@@ -140,7 +149,8 @@
             // chkClockSeconds
             // 
             this.chkClockSeconds.AutoSize = true;
-            this.chkClockSeconds.Location = new System.Drawing.Point(646, 180);
+            this.chkClockSeconds.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.chkClockSeconds.Location = new System.Drawing.Point(12, 178);
             this.chkClockSeconds.Name = "chkClockSeconds";
             this.chkClockSeconds.Size = new System.Drawing.Size(142, 15);
             this.chkClockSeconds.TabIndex = 8;
@@ -152,7 +162,8 @@
             // chkDisableLockScreen
             // 
             this.chkDisableLockScreen.AutoSize = true;
-            this.chkDisableLockScreen.Location = new System.Drawing.Point(661, 201);
+            this.chkDisableLockScreen.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.chkDisableLockScreen.Location = new System.Drawing.Point(12, 199);
             this.chkDisableLockScreen.Name = "chkDisableLockScreen";
             this.chkDisableLockScreen.Size = new System.Drawing.Size(127, 15);
             this.chkDisableLockScreen.TabIndex = 9;
@@ -166,7 +177,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(253, 224);
             this.Controls.Add(this.chkDisableLockScreen);
             this.Controls.Add(this.chkClockSeconds);
             this.Controls.Add(this.chkFloatingSearch);
