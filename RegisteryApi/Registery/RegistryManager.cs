@@ -143,6 +143,16 @@ namespace RegisteryApi.Registery
             }
             return values.FirstOrDefault(v => v.Name == valueName);
         }
+        public static RegistryKey CreateKey(string parent,string name)
+        {
+            RegistryKey key = GetRegistryKey(parent);
+            return key.CreateSubKey(name, true);
+        }
+        public static void DeleteKey(string parent,string name)
+        {
+            RegistryKey key = GetRegistryKey(parent);
+            key.DeleteSubKeyTree(name);
+        }
         public static void AddValue(string keyPath,RegistryValue value)
         {
             RegistryKey key = GetRegistryKey(keyPath);

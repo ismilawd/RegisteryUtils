@@ -294,5 +294,26 @@ namespace Presentation.Forms
         {
             Environment.Exit(0);
         }
+
+        private void toolHelp_Click(object sender, EventArgs e)
+        {
+            Process.Start("https://github.com/ismilawd/RegisteryUtils/wiki");
+        }
+
+        private void toolAboutDeveloper_Click(object sender, EventArgs e)
+        {
+            Process.Start("https://github.com/ismilawd");
+        }
+
+        private void toolAbout_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolWizard_Click(object sender, EventArgs e)
+        {
+            Wizard wizard = new Wizard();
+            wizard.Show();
+        }
     }
 }

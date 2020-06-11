@@ -145,8 +145,9 @@
             // toolWizard
             // 
             this.toolWizard.Name = "toolWizard";
-            this.toolWizard.Size = new System.Drawing.Size(153, 22);
+            this.toolWizard.Size = new System.Drawing.Size(180, 22);
             this.toolWizard.Text = "جادوگر رجیستری";
+            this.toolWizard.Click += new System.EventHandler(this.toolWizard_Click);
             // 
             // راهنماToolStripMenuItem
             // 
@@ -163,18 +164,22 @@
             this.toolHelp.Name = "toolHelp";
             this.toolHelp.Size = new System.Drawing.Size(171, 22);
             this.toolHelp.Text = "راهنمای نرم افزار";
+            this.toolHelp.Click += new System.EventHandler(this.toolHelp_Click);
             // 
             // toolAboutDeveloper
             // 
             this.toolAboutDeveloper.Name = "toolAboutDeveloper";
             this.toolAboutDeveloper.Size = new System.Drawing.Size(171, 22);
             this.toolAboutDeveloper.Text = "درباره توسعه دهنده";
+            this.toolAboutDeveloper.Click += new System.EventHandler(this.toolAboutDeveloper_Click);
             // 
             // toolAbout
             // 
             this.toolAbout.Name = "toolAbout";
             this.toolAbout.Size = new System.Drawing.Size(171, 22);
             this.toolAbout.Text = "درباره نرم افزار";
+            this.toolAbout.Visible = false;
+            this.toolAbout.Click += new System.EventHandler(this.toolAbout_Click);
             // 
             // tableLayoutPanel1
             // 
