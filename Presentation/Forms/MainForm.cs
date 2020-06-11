@@ -324,38 +324,53 @@ namespace Presentation.Forms
 
         private void treeAdd_Click(object sender, EventArgs e)
         {
-            AddKey addKey = new AddKey(treeViewRegistery.SelectedNode.FullPath);
-            DialogResult result = addKey.ShowDialog();
-            if (result == DialogResult.OK)
+            try
             {
-                thLoadKeys = new Thread(LoadKeys);
-                thLoadKeys.Start();
+                AddKey addKey = new AddKey(treeViewRegistery.SelectedNode.FullPath);
+                DialogResult result = addKey.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    thLoadKeys = new Thread(LoadKeys);
+                    thLoadKeys.Start();
+                }
+                else
+                {
+                    MessageBox.Show("عملیات توسط کاربر لغو شد.", "افزودن", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
-            else
+            catch (Exception)
             {
-                MessageBox.Show("عملیات توسط کاربر لغو شد.", "افزودن", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("نرم افزار قادر به ایجاد کلید در کلید انتخاب شده نیست.", "خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void treeDelete_Click(object sender, EventArgs e)
         {
-            if(treeViewRegistery.SelectedNode.Parent==null)
+            try
             {
-                MessageBox.Show("کلید روت نمیتواند حذف شود.", "اخطار", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-            DialogResult result = MessageBox.Show($"آیا برای حذف {treeViewRegistery.SelectedNode.FullPath} اطمینان دارید؟", "حذف کلید", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (result == DialogResult.Yes)
-            {
-                if (RegistryManager.GetRegistryKey(treeViewRegistery.SelectedNode.FullPath) == null)
+                if (treeViewRegistery.SelectedNode.Parent == null)
                 {
-                    treeViewRegistery.Nodes.Remove(treeViewRegistery.SelectedNode);
-                    MessageBox.Show("کلیدی با این نام یافت نشد.", "اخطار", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("کلید روت نمیتواند حذف شود.", "اخطار", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
-                RegistryManager.DeleteKey(treeViewRegistery.SelectedNode.Parent.FullPath,treeViewRegistery.SelectedNode.Text);
-                thLoadKeys = new Thread(LoadKeys);
-                thLoadKeys.Start();
+                DialogResult result = MessageBox.Show($"آیا برای حذف {treeViewRegistery.SelectedNode.FullPath} اطمینان دارید؟", "حذف کلید", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (result == DialogResult.Yes)
+                {
+                    if (RegistryManager.GetRegistryKey(treeViewRegistery.SelectedNode.FullPath) == null)
+                    {
+                        treeViewRegistery.Nodes.Remove(treeViewRegistery.SelectedNode);
+                        MessageBox.Show("کلیدی با این نام یافت نشد.", "اخطار", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+                    RegistryManager.DeleteKey(treeViewRegistery.SelectedNode.Parent.FullPath, treeViewRegistery.SelectedNode.Text);
+                    thLoadKeys = new Thread(LoadKeys);
+                    thLoadKeys.Start();
+                }
+            }
+            catch (Exception)
+            {
+
+                MessageBox.Show("نرم افزار قادر به حذف کلید انتخاب شده نیست.", "خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }
