@@ -21,6 +21,7 @@ namespace Presentation.Forms
             InitializeComponent();
             thCheckPermission = new Thread(CheckPermission);
         }
+        public bool HasPermission { get; set; }
 
         private void CheckPermission()
         {
@@ -36,9 +37,8 @@ namespace Presentation.Forms
                 Thread.Sleep(2000);
                 Invoke(new Action(() =>
                 {
-                    MainForm form = new MainForm();
-                    form.Show();
-                    this.Hide();
+                    HasPermission = true;
+                    Close();
                 }));
             }
             else

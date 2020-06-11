@@ -18,9 +18,11 @@ namespace Presentation
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            //Check Permission
-            
-            Application.Run(new PermissionChecker());
+            PermissionChecker permissionChecker = new PermissionChecker();
+            permissionChecker.ShowDialog();
+            if (permissionChecker.HasPermission)
+
+                Application.Run(new MainForm());
         }
     }
 }

@@ -277,5 +277,22 @@ namespace Presentation.Forms
             }
 
         }
+
+        private void toolAdd_Click(object sender, EventArgs e)
+        {
+            AddValueNoKey add = new AddValueNoKey();
+            add.ShowDialog();
+        }
+
+        private void toolBackup_Click(object sender, EventArgs e)
+        {
+            Backup backup = new Backup();
+            backup.ShowDialog();
+        }
+
+        private void toolExit_Click(object sender, EventArgs e)
+        {
+            Environment.Exit(0);
+        }
     }
 }
