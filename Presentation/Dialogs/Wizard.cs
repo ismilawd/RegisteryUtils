@@ -34,6 +34,14 @@ namespace Presentation.Dialogs
             {
                 chkHideDrives.Checked = RegistryManager.GetKeyValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer", "NoDrives") != null;
             }
+            //chkContextMenuCopyTo
+            {
+                chkContextMenuCopyTo.Checked = RegistryManager.GetRegistryKey(@"HKEY_CLASSES_ROOT\AllFilesystemObjects\shellex\ContextMenuHandlers\CopyTo") != null;
+            }
+            //chkContextMenuMoveTo
+            {
+                chkContextMenuMoveTo.Checked = RegistryManager.GetRegistryKey(@"HKEY_CLASSES_ROOT\AllFilesystemObjects\shellex\ContextMenuHandlers\MoveTo") != null;
+            }
         }
         private void chkFastStartMenu_CheckedChanged(object sender, EventArgs e)
         {
@@ -123,7 +131,40 @@ namespace Presentation.Dialogs
 
         private void chkContextMenuCopyTo_CheckedChanged(object sender, EventArgs e)
         {
+            string parent = @"HKEY_CLASSES_ROOT\AllFilesystemObjects\shellex\ContextMenuHandlers";
+            if (chkContextMenuCopyTo.Checked)
+            {
+                RegistryKey key = RegistryManager.CreateKey(parent, "CopyTo");
+                RegistryManager.EditValue(key.Name, "", new RegistryValue()
+                {
+                    Name="",
+                    Value="{C2FBB630-2971-11D1-A18C-00C04FD75D13}",
+                    ValueKind=RegistryValueKind.String
+                });
+            }
+            else
+            {
+                RegistryManager.DeleteKey(parent, "CopyTo");
+            }
+        }
 
+        private void chkContextMenuMoveTo_CheckedChanged(object sender, EventArgs e)
+        {
+            string parent = @"HKEY_CLASSES_ROOT\AllFilesystemObjects\shellex\ContextMenuHandlers";
+            if (chkContextMenuMoveTo.Checked)
+            {
+                RegistryKey key = RegistryManager.CreateKey(parent, "MoveTo");
+                RegistryManager.EditValue(key.Name, "", new RegistryValue()
+                {
+                    Name = "",
+                    Value = "{C2FBB631-2971-11D1-A18C-00C04FD75D13}",
+                    ValueKind = RegistryValueKind.String
+                });
+            }
+            else
+            {
+                RegistryManager.DeleteKey(parent, "MoveTo");
+            }
         }
     }
 }

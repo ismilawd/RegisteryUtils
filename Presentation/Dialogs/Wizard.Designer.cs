@@ -107,6 +107,7 @@
             this.chkContextMenuMoveTo.Text = "Enable Context Menu Move To";
             this.chkContextMenuMoveTo.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.chkContextMenuMoveTo.UseSelectable = true;
+            this.chkContextMenuMoveTo.CheckedChanged += new System.EventHandler(this.chkContextMenuMoveTo_CheckedChanged);
             // 
             // Wizard
             // 
