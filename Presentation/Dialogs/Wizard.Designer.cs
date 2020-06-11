@@ -31,6 +31,10 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Wizard));
             this.chkFastStartMenu = new MetroFramework.Controls.MetroCheckBox();
             this.chkRestrictChangingDesktopWallpaper = new MetroFramework.Controls.MetroCheckBox();
+            this.chkHideDrives = new MetroFramework.Controls.MetroCheckBox();
+            this.chkClearRunHistory = new MetroFramework.Controls.MetroCheckBox();
+            this.chkContextMenuCopyTo = new MetroFramework.Controls.MetroCheckBox();
+            this.chkContextMenuMoveTo = new MetroFramework.Controls.MetroCheckBox();
             this.SuspendLayout();
             // 
             // chkFastStartMenu
@@ -57,12 +61,63 @@
             this.chkRestrictChangingDesktopWallpaper.UseSelectable = true;
             this.chkRestrictChangingDesktopWallpaper.CheckedChanged += new System.EventHandler(this.chkRestrictChangingDesktopWallpaper_CheckedChanged);
             // 
+            // chkHideDrives
+            // 
+            this.chkHideDrives.AutoSize = true;
+            this.chkHideDrives.Location = new System.Drawing.Point(705, 54);
+            this.chkHideDrives.Name = "chkHideDrives";
+            this.chkHideDrives.Size = new System.Drawing.Size(83, 15);
+            this.chkHideDrives.TabIndex = 2;
+            this.chkHideDrives.Text = "Hide Drives";
+            this.chkHideDrives.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.chkHideDrives.UseSelectable = true;
+            this.chkHideDrives.CheckedChanged += new System.EventHandler(this.chkHideDrives_CheckedChanged);
+            // 
+            // chkClearRunHistory
+            // 
+            this.chkClearRunHistory.AutoSize = true;
+            this.chkClearRunHistory.Location = new System.Drawing.Point(673, 75);
+            this.chkClearRunHistory.Name = "chkClearRunHistory";
+            this.chkClearRunHistory.Size = new System.Drawing.Size(115, 15);
+            this.chkClearRunHistory.TabIndex = 3;
+            this.chkClearRunHistory.Text = "Clear Run History";
+            this.chkClearRunHistory.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.chkClearRunHistory.UseSelectable = true;
+            this.chkClearRunHistory.CheckedChanged += new System.EventHandler(this.chkClearRunHistory_CheckedChanged);
+            // 
+            // chkContextMenuCopyTo
+            // 
+            this.chkContextMenuCopyTo.AutoSize = true;
+            this.chkContextMenuCopyTo.Location = new System.Drawing.Point(605, 96);
+            this.chkContextMenuCopyTo.Name = "chkContextMenuCopyTo";
+            this.chkContextMenuCopyTo.Size = new System.Drawing.Size(183, 15);
+            this.chkContextMenuCopyTo.TabIndex = 4;
+            this.chkContextMenuCopyTo.Text = "Enable Context Menu Copy To";
+            this.chkContextMenuCopyTo.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.chkContextMenuCopyTo.UseSelectable = true;
+            this.chkContextMenuCopyTo.CheckedChanged += new System.EventHandler(this.chkContextMenuCopyTo_CheckedChanged);
+            // 
+            // chkContextMenuMoveTo
+            // 
+            this.chkContextMenuMoveTo.AutoSize = true;
+            this.chkContextMenuMoveTo.Location = new System.Drawing.Point(603, 117);
+            this.chkContextMenuMoveTo.Name = "chkContextMenuMoveTo";
+            this.chkContextMenuMoveTo.Size = new System.Drawing.Size(185, 15);
+            this.chkContextMenuMoveTo.TabIndex = 5;
+            this.chkContextMenuMoveTo.Text = "Enable Context Menu Move To";
+            this.chkContextMenuMoveTo.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.chkContextMenuMoveTo.UseSelectable = true;
+            // 
             // Wizard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.chkContextMenuMoveTo);
+            this.Controls.Add(this.chkContextMenuCopyTo);
+            this.Controls.Add(this.chkClearRunHistory);
+            this.Controls.Add(this.chkHideDrives);
             this.Controls.Add(this.chkRestrictChangingDesktopWallpaper);
             this.Controls.Add(this.chkFastStartMenu);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
@@ -81,5 +136,9 @@
 
         private MetroFramework.Controls.MetroCheckBox chkFastStartMenu;
         private MetroFramework.Controls.MetroCheckBox chkRestrictChangingDesktopWallpaper;
+        private MetroFramework.Controls.MetroCheckBox chkHideDrives;
+        private MetroFramework.Controls.MetroCheckBox chkClearRunHistory;
+        private MetroFramework.Controls.MetroCheckBox chkContextMenuCopyTo;
+        private MetroFramework.Controls.MetroCheckBox chkContextMenuMoveTo;
     }
 }
