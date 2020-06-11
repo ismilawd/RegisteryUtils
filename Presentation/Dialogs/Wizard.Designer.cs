@@ -35,6 +35,8 @@
             this.chkClearRunHistory = new MetroFramework.Controls.MetroCheckBox();
             this.chkContextMenuCopyTo = new MetroFramework.Controls.MetroCheckBox();
             this.chkContextMenuMoveTo = new MetroFramework.Controls.MetroCheckBox();
+            this.chkShortcutArrows = new MetroFramework.Controls.MetroCheckBox();
+            this.chkFloatingSearch = new MetroFramework.Controls.MetroCheckBox();
             this.SuspendLayout();
             // 
             // chkFastStartMenu
@@ -109,12 +111,38 @@
             this.chkContextMenuMoveTo.UseSelectable = true;
             this.chkContextMenuMoveTo.CheckedChanged += new System.EventHandler(this.chkContextMenuMoveTo_CheckedChanged);
             // 
+            // chkShortcutArrows
+            // 
+            this.chkShortcutArrows.AutoSize = true;
+            this.chkShortcutArrows.Location = new System.Drawing.Point(634, 138);
+            this.chkShortcutArrows.Name = "chkShortcutArrows";
+            this.chkShortcutArrows.Size = new System.Drawing.Size(154, 15);
+            this.chkShortcutArrows.TabIndex = 6;
+            this.chkShortcutArrows.Text = "Remove Shortcut Arrows";
+            this.chkShortcutArrows.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.chkShortcutArrows.UseSelectable = true;
+            this.chkShortcutArrows.CheckedChanged += new System.EventHandler(this.chkShortcutArrows_CheckedChanged);
+            // 
+            // chkFloatingSearch
+            // 
+            this.chkFloatingSearch.AutoSize = true;
+            this.chkFloatingSearch.Location = new System.Drawing.Point(684, 159);
+            this.chkFloatingSearch.Name = "chkFloatingSearch";
+            this.chkFloatingSearch.Size = new System.Drawing.Size(104, 15);
+            this.chkFloatingSearch.TabIndex = 7;
+            this.chkFloatingSearch.Text = "Floating Search";
+            this.chkFloatingSearch.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.chkFloatingSearch.UseSelectable = true;
+            this.chkFloatingSearch.CheckedChanged += new System.EventHandler(this.chkFloatingSearch_CheckedChanged);
+            // 
             // Wizard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.chkFloatingSearch);
+            this.Controls.Add(this.chkShortcutArrows);
             this.Controls.Add(this.chkContextMenuMoveTo);
             this.Controls.Add(this.chkContextMenuCopyTo);
             this.Controls.Add(this.chkClearRunHistory);
@@ -141,5 +169,7 @@
         private MetroFramework.Controls.MetroCheckBox chkClearRunHistory;
         private MetroFramework.Controls.MetroCheckBox chkContextMenuCopyTo;
         private MetroFramework.Controls.MetroCheckBox chkContextMenuMoveTo;
+        private MetroFramework.Controls.MetroCheckBox chkShortcutArrows;
+        private MetroFramework.Controls.MetroCheckBox chkFloatingSearch;
     }
 }

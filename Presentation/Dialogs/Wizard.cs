@@ -42,6 +42,16 @@ namespace Presentation.Dialogs
             {
                 chkContextMenuMoveTo.Checked = RegistryManager.GetRegistryKey(@"HKEY_CLASSES_ROOT\AllFilesystemObjects\shellex\ContextMenuHandlers\MoveTo") != null;
             }
+            //chkShortcutArrows
+            {
+                chkShortcutArrows.CheckedChanged -= chkShortcutArrows_CheckedChanged;
+                chkShortcutArrows.Checked = RegistryManager.GetKeyValue(@"HKEY_CLASSES_ROOT\lnkfile", "IsShortcut") == null;
+                chkShortcutArrows.CheckedChanged += chkShortcutArrows_CheckedChanged;
+            }
+            //chkFloatingSearch
+            {
+                chkFloatingSearch.Checked = RegistryManager.GetKeyValue(@"HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Search", "ImmersiveSearch") != null;
+            }
         }
         private void chkFastStartMenu_CheckedChanged(object sender, EventArgs e)
         {
@@ -137,9 +147,9 @@ namespace Presentation.Dialogs
                 RegistryKey key = RegistryManager.CreateKey(parent, "CopyTo");
                 RegistryManager.EditValue(key.Name, "", new RegistryValue()
                 {
-                    Name="",
-                    Value="{C2FBB630-2971-11D1-A18C-00C04FD75D13}",
-                    ValueKind=RegistryValueKind.String
+                    Name = "",
+                    Value = "{C2FBB630-2971-11D1-A18C-00C04FD75D13}",
+                    ValueKind = RegistryValueKind.String
                 });
             }
             else
@@ -164,6 +174,42 @@ namespace Presentation.Dialogs
             else
             {
                 RegistryManager.DeleteKey(parent, "MoveTo");
+            }
+        }
+
+        private void chkShortcutArrows_CheckedChanged(object sender, EventArgs e)
+        {
+            string key = @"HKEY_CLASSES_ROOT\lnkfile";
+            if (chkShortcutArrows.Checked)
+            {
+                RegistryManager.DeleteValue($"{key}\\IsShortcut");
+            }
+            else
+            {
+                RegistryManager.AddValue(key, new RegistryValue
+                {
+                    Name = "IsShortcut",
+                    Value = "",
+                    ValueKind = RegistryValueKind.String
+                });
+            }
+        }
+
+        private void chkFloatingSearch_CheckedChanged(object sender, EventArgs e)
+        {
+            string parent = @"HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Search";
+            if (chkFloatingSearch.Checked)
+            {
+                RegistryManager.AddValue(parent, new RegistryValue
+                {
+                    Name="ImmersiveSearch",
+                    Value=1,
+                    ValueKind=RegistryValueKind.DWord
+                });
+            }
+            else
+            {
+                RegistryManager.DeleteValue($"{parent}\\ImmersiveSearch");
             }
         }
     }
