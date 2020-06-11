@@ -56,6 +56,10 @@ namespace Presentation.Dialogs
             {
                 chkClockSeconds.Checked = RegistryManager.GetKeyValue(@"HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced", "ShowSecondsInSystemClock") != null;
             }
+            //chkDisableLockScreen
+            {
+                chkDisableLockScreen.Checked = RegistryManager.GetRegistryKey(@"HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\Personalization") != null;
+            }
         }
         private void chkFastStartMenu_CheckedChanged(object sender, EventArgs e)
         {
@@ -232,6 +236,25 @@ namespace Presentation.Dialogs
             else
             {
                 RegistryManager.DeleteValue($"{key}\\ShowSecondsInSystemClock");
+            }
+        }
+
+        private void chkDisableLockScreen_CheckedChanged(object sender, EventArgs e)
+        {
+            string parent= @"HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows";
+            if (chkDisableLockScreen.Checked)
+            {
+                RegistryManager.CreateKey(parent, "Personalization");
+                RegistryManager.AddValue($"{parent}\\Personalization", new RegistryValue
+                {
+                   Name="NoLockScreen",
+                   Value=1,
+                   ValueKind=RegistryValueKind.DWord
+                });
+            }
+            else
+            {
+                RegistryManager.DeleteKey(parent, "Personalization");
             }
         }
     }
